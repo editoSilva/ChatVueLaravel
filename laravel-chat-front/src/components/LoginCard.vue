@@ -1,0 +1,41 @@
+<template>
+  <q-card class="login-card custom-padding">
+    <q-card-section>
+      <div class="text-center">
+        <h6 class="mb-0">Seja muito bem-vindo ao</h6>
+        <h5 class="mt-0">Laravel Chat</h5>
+      </div>
+      <label>Digite seu nome para começar a conversar</label>
+      <q-input outlined v-model="text" label="Insira o seu nome aqui!" />
+      <div class="row justify-center">
+        <q-btn class="q-mt-md" color="primary" icon-right="send" label="Acessar" />
+      </div>
+    </q-card-section>
+  </q-card>
+</template>
+<style scoped>
+  .mt-0{
+    margin-top:0px!important;
+  }
+  .mb-0{
+    margin-bottom:0px!important;
+  }
+  .custom-padding{
+    padding: 0% 10% 10% 10%;
+  }
+  .login-card{
+    width:30vw;
+  }
+</style>
+<script>
+  export default {
+    name: 'LoginCard',
+    props: {
+    },
+    data () {
+      return {
+        text: ''
+      }
+    }
+  };
+</script>

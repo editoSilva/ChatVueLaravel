@@ -1,5 +1,6 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout class="bg-login-gradient" view="lHh Lpr lFf">
+  <div v-if="$route.meta.hideDrawer">
     <q-header elevated>
       <q-toolbar>
         <q-btn
@@ -33,13 +34,38 @@
       </q-list>
       <UserCard></UserCard>
     </q-drawer>
-
+  </div>
     <q-page-container>
       <router-view />
     </q-page-container>
   </q-layout>
 </template>
+<style scoped>
+  .bg-login-gradient {
+    background: linear-gradient(57deg, #8f0067, #0019c0, #8f0067);
+    background-size: 600% 600%;
 
+    -webkit-animation: loginBackground 30s ease infinite;
+    -moz-animation: loginBackground 30s ease infinite;
+    animation: loginBackground 30s ease infinite;
+  }
+
+  @-webkit-keyframes loginBackground {
+    0%{background-position:93% 0%}
+    50%{background-position:0% 100%}
+    100%{background-position:93% 0%}
+  }
+  @-moz-keyframes loginBackground {
+    0%{background-position:93% 0%}
+    50%{background-position:0% 100%}
+    100%{background-position:93% 0%}
+  }
+  @keyframes loginBackground {
+    0%{background-position:93% 0%}
+    50%{background-position:0% 100%}
+    100%{background-position:93% 0%}
+  }
+</style>
 <script>
 import UserCard from "components/UserCard";
 export default {

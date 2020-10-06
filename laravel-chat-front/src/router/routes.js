@@ -7,15 +7,13 @@ const routes = [
     ],
   },
   {
-    path: '/identify',
+    path: '/chat',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Identity.vue') },
+      { path: '', component: () => import('pages/Chat.vue'), meta:{ hideDrawer:true } },
     ],
   },
 
-  // Always leave this as last one,
-  // but you can also remove it
   {
     path: '*',
     component: () => import('pages/Error404.vue'),
