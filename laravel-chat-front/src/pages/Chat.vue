@@ -6,27 +6,27 @@
           <q-chat-message
             name="me"
             avatar="https://cdn.quasar.dev/img/avatar1.jpg"
-            :text="[messages.test]"
-            stamp="7 minutes ago"
+            :text="[]"
             sent
             size="6"
             bg-color="amber-7"
           />
+          <div v-for="message in messages" :key="message.id" >
           <q-chat-message
-            name="Jane"
+            :name="message.username"
             avatar="https://cdn.quasar.dev/img/avatar5.jpg"
-            :text="['doing fine, how r you?']"
-            stamp="4 minutes ago"
-            size="6"
+            :text="[message.message]"
+            size="10"
             text-color="white"
             bg-color="primary"
           />
+          </div>
         </div>
       </div>
       <div class="q-pa-md q-gutter-sm">
         <q-card>
           <q-editor v-model="editor" min-height="5rem" />
-          <q-btn class="full-width" icon-right="send" color="primary" label="Enviar mensagem"></q-btn>
+          <q-btn @click="sendMessage" class="full-width" icon-right="send" color="primary" label="Enviar mensagem"></q-btn>
         </q-card>
       </div>
     </div>
@@ -39,6 +39,9 @@
 }
 </style>
 <script>
+  import Axios from 'axios';
+
+
   export default {
     name: 'Identity',
     mounted() {
@@ -47,15 +50,32 @@
       });
 
       let channel = pusher.subscribe('chat');
+      let presenceChannel = pusher.subscribe('presence-onlineUsers');
+
       let self = this;
-      channel.bind('App\\Events\\SendMessage', function(data) {
-        self.messages = data;
+      console.log('roooooota');
+      console.log(this.$route);
+      channel.bind('App\\Events\\SendMessage', function(res) {
+        self.messages.push(res.data);
       });
+
     },
     data () {
       return {
-        editor: 'What you see is <b>what</b> you get.',
-        messages: '',
+        editor: 'Digite a sua mensagem <b>AQUI</b>',
+        messages: [],
+      }
+    },
+    methods:{
+      async sendMessage(){
+          await Axios.post('http://127.0.0.1:8080/api/send-message', {
+            message: this.editor,
+            id: Date.now(),
+            username: 'Hugão',
+            user_id: Date.now(),
+          }).then((res) => {
+
+          });
       }
     }
   };

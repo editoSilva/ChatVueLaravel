@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Events\SendMessage;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,7 +17,3 @@ Route::get('/', function () {
 });
 
 
-Route::get('/send-message', function () {
-    event(new SendMessage());
-    return 'ok';
-});

@@ -6,9 +6,9 @@
         <h5 class="mt-0">Laravel Chat</h5>
       </div>
       <label>Digite seu nome para começar a conversar</label>
-      <q-input outlined v-model="text" label="Insira o seu nome aqui!" />
+      <q-input outlined v-model="username" label="Insira o seu nome aqui!" />
       <div class="row justify-center">
-        <q-btn :to="{ path: 'chat' }" class="q-mt-md" color="primary" icon-right="send" label="Acessar" />
+        <q-btn :to="{ path: 'chat', params:{name: username, user_id: user_id} }" class="q-mt-md" color="primary" icon-right="send" label="Acessar" />
       </div>
     </q-card-section>
   </q-card>
@@ -43,7 +43,8 @@
     },
     data () {
       return {
-        text: ''
+        username: '',
+        user_id: Date.now(),
       }
     }
   };

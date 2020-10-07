@@ -14,10 +14,10 @@ class SendMessage implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $test = 'oi';
-
-    public function __construct()
+    public $data;
+    public function __construct($data)
     {
+        $this->data = $data;
     }
 
     public function broadcastOn()
