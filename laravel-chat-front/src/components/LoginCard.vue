@@ -8,7 +8,7 @@
       <label>Digite seu nome para começar a conversar</label>
       <q-input outlined v-model="text" label="Insira o seu nome aqui!" />
       <div class="row justify-center">
-        <q-btn class="q-mt-md" color="primary" icon-right="send" label="Acessar" />
+        <q-btn :to="{ path: 'chat' }" class="q-mt-md" color="primary" icon-right="send" label="Acessar" />
       </div>
     </q-card-section>
   </q-card>
@@ -23,9 +23,18 @@
   .custom-padding{
     padding: 0% 10% 10% 10%;
   }
-  .login-card{
-    width:30vw;
+  @media screen and (max-width: 560px) {
+    .login-card{
+      width:80vw;
+    }
   }
+  @media screen and (min-width: 560px) {
+    .login-card{
+      width:30vw;
+    }
+  }
+
+
 </style>
 <script>
   export default {

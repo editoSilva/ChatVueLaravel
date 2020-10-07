@@ -18,6 +18,9 @@
 <script>
   export default {
     name: 'UserCard',
+    mounted() {
+
+    },
     props: {
     },
   };

@@ -6,7 +6,7 @@
           <q-chat-message
             name="me"
             avatar="https://cdn.quasar.dev/img/avatar1.jpg"
-            :text="['hey, how are you?']"
+            :text="[messages.test]"
             stamp="7 minutes ago"
             sent
             size="6"
@@ -26,6 +26,7 @@
       <div class="q-pa-md q-gutter-sm">
         <q-card>
           <q-editor v-model="editor" min-height="5rem" />
+          <q-btn class="full-width" icon-right="send" color="primary" label="Enviar mensagem"></q-btn>
         </q-card>
       </div>
     </div>
@@ -40,9 +41,21 @@
 <script>
   export default {
     name: 'Identity',
+    mounted() {
+      let pusher = new Pusher('2237746a80eba78b502c',{
+        cluster: 'us2'
+      });
+
+      let channel = pusher.subscribe('chat');
+      let self = this;
+      channel.bind('App\\Events\\SendMessage', function(data) {
+        self.messages = data;
+      });
+    },
     data () {
       return {
-        editor: 'What you see is <b>what</b> you get.'
+        editor: 'What you see is <b>what</b> you get.',
+        messages: '',
       }
     }
   };

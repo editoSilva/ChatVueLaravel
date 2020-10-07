@@ -1,7 +1,18 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-
 import routes from './routes';
+window.Pusher = require('pusher-js');
+
+
+
+// Vue.use(VueEcho, {
+//   broadcaster: 'pusher',
+//   httpHost:'127.0.0.1:8080',
+//   wsHost:'127.0.0.1:8080',
+//   key: '2237746a80eba78b502c',
+//   cluster: 'us2',
+// });
+
 
 Vue.use(VueRouter);
 

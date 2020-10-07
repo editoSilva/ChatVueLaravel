@@ -12,7 +12,10 @@
   "dependencies": {
     "@quasar/extras": "^1.0.0",
     "core-js": "^3.6.5",
-    "quasar": "^1.0.0"
+    "laravel-echo": "^1.8.1",
+    "pusher-js": "^7.0.0",
+    "quasar": "^1.0.0",
+    "vue-echo": "^1.0.2"
   },
   "devDependencies": {
     "@quasar/app": "^2.0.0",

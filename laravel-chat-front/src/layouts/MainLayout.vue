@@ -1,5 +1,5 @@
 <template>
-  <q-layout class="bg-login-gradient" view="lHh Lpr lFf">
+  <q-layout :class="!$route.meta.hideDrawer ? 'bg-login-gradient' : '' " view="lHh Lpr lFf">
   <div v-if="$route.meta.hideDrawer">
     <q-header elevated>
       <q-toolbar>
