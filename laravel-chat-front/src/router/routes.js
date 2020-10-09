@@ -8,10 +8,9 @@ const routes = [
   },
   {
     path: '/chat',
-    name:'chat',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Chat.vue'), meta:{ hideDrawer:true } },
+    { name:'chat', path: '', component: () => import('pages/Chat.vue'), meta:{ hideDrawer:true } },
     ],
   },
 

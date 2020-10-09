@@ -3,18 +3,22 @@
     <div class="container-fluid">
       <div class="q-pa-md row justify-center fill-width">
         <div class="col-12">
-          <q-chat-message
-            name="me"
-            avatar="https://cdn.quasar.dev/img/avatar1.jpg"
-            :text="[]"
-            sent
-            size="6"
-            bg-color="amber-7"
-          />
+
           <div v-for="message in messages" :key="message.id" >
           <q-chat-message
+            name="Eu"
+            v-if="message.user_id == user_id"
+            :avatar="message.picture"
+            :text="[message.message]"
+            sent
+            size="10"
+            bg-color="amber-7"
+          />
+
+          <q-chat-message
+            v-if="message.user_id != user_id"
             :name="message.username"
-            avatar="https://cdn.quasar.dev/img/avatar5.jpg"
+            :avatar="message.picture"
             :text="[message.message]"
             size="10"
             text-color="white"
@@ -53,10 +57,11 @@
       let presenceChannel = pusher.subscribe('presence-onlineUsers');
 
       let self = this;
-      console.log('roooooota');
-      console.log(this.$route);
       channel.bind('App\\Events\\SendMessage', function(res) {
         self.messages.push(res.data);
+        res.data.filter(function(e){
+          console.log(e);
+        })
       });
 
     },
@@ -64,6 +69,10 @@
       return {
         editor: 'Digite a sua mensagem <b>AQUI</b>',
         messages: [],
+        yourMessages: [],
+        username: this.$route.params.name,
+        user_id: this.$route.params.user_id,
+        picture: this.$route.params.picture,
       }
     },
     methods:{
@@ -71,11 +80,10 @@
           await Axios.post('http://127.0.0.1:8080/api/send-message', {
             message: this.editor,
             id: Date.now(),
-            username: 'Hugão',
-            user_id: Date.now(),
-          }).then((res) => {
-
-          });
+            username: this.username,
+            user_id: this.user_id,
+            picture: this.picture,
+          }).then((res) => { });
       }
     }
   };

@@ -8,7 +8,7 @@
       <label>Digite seu nome para começar a conversar</label>
       <q-input outlined v-model="username" label="Insira o seu nome aqui!" />
       <div class="row justify-center">
-        <q-btn :to="{ path: 'chat', params:{name: username, user_id: user_id} }" class="q-mt-md" color="primary" icon-right="send" label="Acessar" />
+        <q-btn :to="{ name: 'chat', params:{name: username, user_id: user_id, picture: picture} }" class="q-mt-md" color="primary" icon-right="send" label="Acessar" />
       </div>
     </q-card-section>
   </q-card>
@@ -41,10 +41,20 @@
     name: 'LoginCard',
     props: {
     },
+    mounted() {
+      this.setRandomPicture();
+    },
+    methods:{
+      setRandomPicture(){
+        let randomNum = Math.floor(Math.random() * 10);
+        this.picture = `https://randomuser.me/api/portraits/men/${randomNum}.jpg`
+      }
+    },
     data () {
       return {
         username: '',
         user_id: Date.now(),
+        picture: ''
       }
     }
   };
