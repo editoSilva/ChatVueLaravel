@@ -2,7 +2,8 @@
   <q-card class="login-card custom-padding">
     <q-card-section>
       <div class="text-center">
-        <h6 class="mb-0">Seja muito bem-vindo ao</h6>
+        <q-icon class="mb-0 pb-0" name="thumb_up" style="color: purple; font-size: 4.4em;" />
+        <h6 class="mb-0 mt-0">Seja muito bem-vindo ao</h6>
         <h5 class="mt-0">Laravel Chat</h5>
       </div>
       <label>Digite seu nome para começar a conversar</label>
