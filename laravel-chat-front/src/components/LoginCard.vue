@@ -8,8 +8,15 @@
       </div>
       <label>Digite seu nome para começar a conversar</label>
       <q-input outlined v-model="username" label="Insira o seu nome aqui!" />
+      <q-ajax-bar
+        ref="bar"
+        position="bottom"
+        color="accent"
+        size="10px"
+        skip-hijack
+      />
       <div class="row justify-center">
-        <q-btn :to="{ name: 'chat', params:{name: username, user_id: user_id, picture: picture} }" class="q-mt-md" color="primary" icon-right="send" label="Acessar" />
+        <q-btn @click="login" class="q-mt-md" color="primary" icon-right="send" label="Acessar" />
       </div>
     </q-card-section>
   </q-card>
@@ -46,6 +53,15 @@
       this.setRandomPicture();
     },
     methods:{
+      login(){
+        const bar = this.$refs.bar
+        bar.start()
+        this.timer = setTimeout(() => {
+          if (this.$refs.bar) {
+            this.$refs.bar.stop()
+          }
+        }, Math.random() * 3000 + 1000)
+      },
       setRandomPicture(){
         let randomNum = Math.floor(Math.random() * 10);
         this.picture = `https://randomuser.me/api/portraits/men/${randomNum}.jpg`
